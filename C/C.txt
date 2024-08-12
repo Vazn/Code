@@ -1,0 +1,68 @@
+//=============//==============>> CONCEPTS C <<=================//===================//
+
+[Pointeurs]
+    
+    *mon_pointeur = NULL || *mon_pointeur= &ma_variable          => Pointer inits
+    **meta_pointeur = NULL || **meta_pointeur = &mon_pointeur
+
+
+    mon_pointeur = &ma_variable                                  => Point calls
+    *mon_pointeur = ma_variable
+    **meta_pointeur = *mon_pointeur
+
+//=============//==============>> ARRAYS <<=================//===================//
+
+tableau[X] = *(tableau+x) =  élement d'indice X 
+*tableau = premier élement du tableau
+
+//=============//==============>> STRUCTS <<=================//===================//
+
+(*monPointeur).unChamp = X <=====> monPointeur->unChamp = X;
+
+//=============//==============>> MEMORY <<=================//===================//
+
+sizeof(<data>)                          =>  Return size in bytes
+malloc(<size>)                          =>  Allocate memory
+calloc(<length>, <size>)                =>  Allocate memory and init all spaces to 0
+realloc(<*block>, <new_size>)           =>  Re-allocate, equivalent to malloc->free->malloc
+
+free()                                  =>  Free memory
+
+//=============//==============>> FILES <<=================//===================//
+
+fopen(<fichier>, <mode_ouverture>) : r  read only
+                                     w  write only
+                                     a  append
+                                     r+ read / write
+                                     w+ read / write, delete content
+                                     a+ append read / write
+
+fclose(<fichier>)                  : fermer un fichier ouvert, si fichier laissé ouvert inutilement, fuite mémoire.
+feof(<fichier>)                    : tester la fin d'un fichier
+
+[LECTURE]
+
+fgetc(<fichier>)                            : lire un caractère      / Retourne EOF quand impossible de lire      /   fgetsc(fichier);
+fegts(<chaîne>, <taille_chaine>, <fichier>) : lire une ligne         / Retourne NULL quand impossiblité de lire   /   fgets(tableauchaine, 256, fichier)
+fscanf(<fichier>, <format>, ...)            : lire du texte formaté  / Retourne 0 quand impossiblité de lire      /   fscanf(<fichier, "%d %d", var1, var2)
+
+[ECRITURE]
+
+fputc(<caractère>, <fichier>)               : écrit un caractère à la fin du fichier            
+fputs(<chaîne>, <fichier>)                  : écrit une ligne à la fin du fichier               
+fprintf(<fichier>, <format>, ...)           : écrit du texte formaté à la fin du fichier
+
+[ECRITURE]
+
+ftell(<fichier>)                           : retourne position curseur dans le fichier
+fseed(<fichier>, <deplacement>, <origine>) : déplace curseur                                    /  fseek(fichier, 5, SEEK_SET) : 
+                            ==> <origine>  : SEEK_SET (début fichier)                              Déplace le curseur de 5 char depuis le début
+                                             SEEK_CUR (position courante)                          du fichier.
+                                             SEEK_END (fin fichier)
+
+rewind(<fichier>)                           : réinistialise la position du curseur
+
+[DIVERS]
+
+rename(<ancien nom>, <nouveau nom>)         : renomme un fichier
+remove(<fichier>)                           : supprime un ficher
